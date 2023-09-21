@@ -16,3 +16,18 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.timer {
+
+display: flex;
+padding: 30px;
+text-align:center;
+}
+.value {
+  display: flex;
+  padding: 30px;
+  background-color: rgb(219, 212, 212);
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+}
