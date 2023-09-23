@@ -18,18 +18,18 @@ function createPromise(position, delay) {
 const form = document.querySelector('.form');
 form.addEventListener('submit', event => {
   event.preventDefault();
-  const delay = parseInt(form.querySelector('[name="delay"]').value);
+  const delay = parseInt(form.querySelector('[name="delay"]').value); //poberanie wartości z formularza
   const step = parseInt(form.querySelector('[name="step"]').value);
   const amount = parseInt(form.querySelector('[name="amount"]').value);
 
-  let position = 1;
+  let position = 1;                   //inicjowanie zmiennych do tworzenia promisów  + ich obsługa
   let currentDelay = delay;
 
-  function createAndHandlePromises() {
-    if (position <= amount) {
+  function createAndHandlePromises() {     //tworzenie i obsługa obietnic w pętli
+    if (position <= amount) {                 //warunek
       createPromise(position, currentDelay)
         
-        .then(({ position, delay }) => {
+        .then(({ position, delay }) => {        //jeśli sukces to powiadomienie z notiflixa
           Notiflix.Notify.success(
             'Fulfilled promise ${position} in ${delay}ms'
           );
@@ -38,11 +38,11 @@ form.addEventListener('submit', event => {
         .catch(({ position, delay }) => {
           Notiflix.Notify.failure('Rejected promise ${position} in ${delay}ms');
         })
-        
-        .finally(() => {
-          position++;
+
+        .finally(() => {    //wykonane niezależnie od wyniku sukces/odrzucenie
+          position++;                        //...aktualizacja zmiennch position i currentDelay
           currentDelay += step;
-          createAndHandlePromises();
+          createAndHandlePromises();           //wywołanie funkcji
         });
     }
   }
