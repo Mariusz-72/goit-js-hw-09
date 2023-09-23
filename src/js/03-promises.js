@@ -25,23 +25,27 @@ form.addEventListener('submit', event => {
   let position = 1;
   let currentDelay = delay;
 
-  function createPromisesAgain() {
+  function createAndHandlePromises() {
     if (position <= amount) {
       createPromise(position, currentDelay)
+        
         .then(({ position, delay }) => {
           Notiflix.Notify.success(
             'Fulfilled promise ${position} in ${delay}ms'
           );
-        })
+        }) 
+        
         .catch(({ position, delay }) => {
           Notiflix.Notify.failure('Rejected promise ${position} in ${delay}ms');
         })
+        
         .finally(() => {
           position++;
           currentDelay += step;
-          createPromisesAgain();
+          createAndHandlePromises();
         });
     }
   }
-  createPromisesAgain();
+
+  createAndHandlePromises();
 });
