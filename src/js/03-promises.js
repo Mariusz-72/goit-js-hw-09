@@ -39,6 +39,7 @@ form.addEventListener('submit', event => {
           Notiflix.Notify.failure('Rejected promise ${position} in ${delay}ms');
         })
 
+        
         .finally(() => {    //wykonane niezależnie od wyniku sukces/odrzucenie
           position++;                        //...aktualizacja zmiennch position i currentDelay
           currentDelay += step;
