@@ -30,21 +30,24 @@ form.addEventListener('submit', event => {
       createPromise(position, currentDelay)
         
         .then(({ position, delay }) => {        //jeśli sukces to powiadomienie z notiflixa
-          Notiflix.Notify.success(
-            'Fulfilled promise ${position} in ${delay}ms'
-          );
-        }) 
-        
-        .catch(({ position, delay }) => {
-          Notiflix.Notify.failure('Rejected promise ${position} in ${delay}ms');
-        })
-
-        
-        .finally(() => {    //wykonane niezależnie od wyniku sukces/odrzucenie
-          position++;                        //...aktualizacja zmiennch position i currentDelay
+          Notiflix.Notify.success('Fulfilled promise ${position} in ${delay}ms');
+          position++;
           currentDelay += step;
-          createAndHandlePromises();           //wywołanie funkcji
-        });
+          createAndHandlePromises();
+          
+    })
+        
+  .catch(({ position, delay }) => {
+    Notiflix.Notify.failure('Rejected promise ${position} in ${delay}ms');
+    position++;
+    currentDelay += step;
+    createAndHandlePromises();
+  });
+//        .finally(() => {    //wykonane niezależnie od wyniku sukces/odrzucenie
+//          position++;                        //...aktualizacja zmiennch position i currentDelay
+//          currentDelay += step;
+//          createAndHandlePromises();           //wywołanie funkcji
+ //       });
     }
   }
 
