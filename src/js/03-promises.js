@@ -30,14 +30,14 @@ form.addEventListener('submit', event => {
       createPromise(position, currentDelay)
         
         .then(({ position, delay }) => {        //jeśli sukces to powiadomienie z notiflixa
-          Notiflix.Notify.success('Fulfilled promise ${position} in ${delay}ms');
+          Notiflix.Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
           
           
           
     })
         
   .catch(({ position, delay }) => {
-    Notiflix.Notify.failure('Rejected promise ${position} in ${delay}ms');
+    Notiflix.Notify.failure(`Rejected promise ${position} in ${delay}ms`);
     
   });
 //        .finally(() => {    //wykonane niezależnie od wyniku sukces/odrzucenie
