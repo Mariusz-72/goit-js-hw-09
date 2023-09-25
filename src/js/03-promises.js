@@ -31,23 +31,23 @@ form.addEventListener('submit', event => {
         
         .then(({ position, delay }) => {        //jeśli sukces to powiadomienie z notiflixa
           Notiflix.Notify.success('Fulfilled promise ${position} in ${delay}ms');
-          position++;
-          currentDelay += step;
-          createAndHandlePromises();
+          
+          
           
     })
         
   .catch(({ position, delay }) => {
     Notiflix.Notify.failure('Rejected promise ${position} in ${delay}ms');
-    position++;
-    currentDelay += step;
-    createAndHandlePromises();
+    
   });
 //        .finally(() => {    //wykonane niezależnie od wyniku sukces/odrzucenie
 //          position++;                        //...aktualizacja zmiennch position i currentDelay
 //          currentDelay += step;
 //          createAndHandlePromises();           //wywołanie funkcji
- //       });
+      //       });
+      position++;
+      currentDelay += step;
+      createAndHandlePromises();
     }
   }
 
